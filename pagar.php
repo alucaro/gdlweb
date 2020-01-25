@@ -24,6 +24,7 @@ if(isset($_POST['submit'])):
     $fecha = date('Y-m-d H:i:s');
     //pedidos
     $boletos = $_POST['boletos'];
+    $numero_Boletos = $boletos;
     $camisas = $_POST['pedido_extra']['camisas']['cantidad'];
     $precioCamisa = $_POST['pedido_extra']['camisas']['precio'];
 
@@ -43,20 +44,38 @@ if(isset($_POST['submit'])):
         $stmt->execute();
         $stmt->close();
         $conn->close();
-        header('Location: validar_registro.php?exitoso=1');
+        //header('Location: validar_registro.php?exitoso=1');
     } catch(Exception $e) {
         $error = $e->getMessage();
     } 
+endif;
 
 $compra = new Payer();
 $compra->setPaymentMethod('paypal');
 
-/*
+
 $articulo = new Item();
 $articulo->setName($producto)
          ->setCurrency('MXN')
          ->setQuantity(1)
          ->setPrice($precio);
+
+$i = 0;
+
+foreach($numero_Boletos as $key => $value){
+    if((int)$value['cantidad'] > 0) {
+        
+        ${"articulo$i"} = new Item();
+        ${"articulo$i"} ->setName('Pase: ' . $key)
+                        ->setCurrency('MXN')
+                        ->setQuantity((int) $value['cantidad'])
+                        ->setPrice((int) $value['precio']);
+        $i++;
+    }
+}
+
+echo $articulo0->getQuantity();
+/*
 
 $listaArticulos = new ItemList();
 $listaArticulos->setItems(array($articulo));
