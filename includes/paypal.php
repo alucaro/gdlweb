@@ -9,8 +9,8 @@ $apiContext = new \PayPal\Rest\ApiContext(
 
         //Correo de paypal -> sb-xjrjs546939@personal.example.com
         //Cliente id
-        'AUxUFAocG3ojVgZ0o-7YJ4NoK8qQicwaIScxmRg-iVfq1C02gs16cES8FdLJsqVffaUBB6MWIXi0_R5-',
+        'AXfP7LGyGtwaaD4W82qsSKN4mFqQeW-dPkQsPWKl7PLYPHB_jx5tNMpuWQmIu4o9nfp_1WROQbRhkiLy',
         //Secret
-        'ELmgw3h5e85dr85p8VoxlznRZ0xDCE3NUHjev6uGkPToI6j08kdaDJIRcX-SR3GK3nBNqVW-G7jjj_WT'
+        'EL21kqAVaMiQe6xPLk3FUlEbILLJlxkC45YsZqTKzZLuGnpL8zb8a0Zm8UJZoQHP-grDRhuhhohntcFl'
     )
 );
