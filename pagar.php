@@ -66,11 +66,13 @@ $articulo->setName($producto)
          ->setPrice($precio);
 
 $i = 0;
+$arreglo_pedido = array();
 
 foreach($numero_Boletos as $key => $value){
     if( (int) $value['cantidad'] > 0) {
         
         ${"articulo$i"} = new Item();
+        $arreglo_pedido[] = ${"articulo$i"};
         ${"articulo$i"} ->setName('Pase: ' . $key)
                         ->setCurrency('USD')
                         ->setQuantity((int) $value['cantidad'])
@@ -83,7 +85,6 @@ foreach($pedidoExtra as $key => $value){
     
     if( (int) $value['cantidad'] > 0 ) {
 
-        
         if($key == 'camisas'){
             $precio = (float) $value['precio'] * .93;
                 
@@ -92,6 +93,7 @@ foreach($pedidoExtra as $key => $value){
         }
         
         ${"articulo$i"} = new Item();
+        $arreglo_pedido[] = ${"articulo$i"};
         ${"articulo$i"} ->setName('Extras: ' . $key)
                         ->setCurrency('USD')
                         ->setQuantity((int) $value['cantidad'])
@@ -101,23 +103,17 @@ foreach($pedidoExtra as $key => $value){
     }
 }
 
-echo $articulo3->getName();
-
-
-/*
+//echo $articulo3->getName();
 
 $listaArticulos = new ItemList();
-$listaArticulos->setItems(array($articulo));
-
-$detalles = new Details();
-$detalles->setShipping($envio)
-         ->setSubtotal($precio);
+$listaArticulos->setItems($arreglo_pedido);
 
 $cantidad = new Amount();
 $cantidad->setCurrency('USD')
           ->setTotal($precio)
           ->setDetails($detalles);
 
+          /*
 $transaccion = new Transaction();
 $transaccion->setAmount($cantidad)
             ->setItemList($listaArticulos)
