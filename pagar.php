@@ -27,6 +27,7 @@ if(isset($_POST['submit'])):
     $numero_Boletos = $boletos;
     $camisas = $_POST['pedido_extra']['camisas']['cantidad'];
     $precioCamisa = $_POST['pedido_extra']['camisas']['precio'];
+    $pedidoExtra = $_POST['pedido_extra'];
 
     $etiquetas = $_POST['pedido_extra']['etiquetas']['cantidad'];
     $precioEtiquetas = $_POST['pedido_extra']['etiquetas']['precio'];
@@ -36,6 +37,10 @@ if(isset($_POST['submit'])):
     //Revisar no esta enviando registro[] en el post
     $eventos = $_POST['registro'];
     $registro = eventos_json($eventos);
+
+    /*echo "<pre>";
+    var_dump($pedidoExtra);
+    echo"</pre>";*/
 
     try {
         require_once('includes/funciones/bd_conexion.php');
@@ -56,25 +61,49 @@ $compra->setPaymentMethod('paypal');
 
 $articulo = new Item();
 $articulo->setName($producto)
-         ->setCurrency('MXN')
+         ->setCurrency('USD')
          ->setQuantity(1)
          ->setPrice($precio);
 
 $i = 0;
 
 foreach($numero_Boletos as $key => $value){
-    if((int)$value['cantidad'] > 0) {
+    if( (int) $value['cantidad'] > 0) {
         
         ${"articulo$i"} = new Item();
         ${"articulo$i"} ->setName('Pase: ' . $key)
-                        ->setCurrency('MXN')
+                        ->setCurrency('USD')
                         ->setQuantity((int) $value['cantidad'])
                         ->setPrice((int) $value['precio']);
         $i++;
     }
 }
 
-echo $articulo0->getQuantity();
+foreach($pedidoExtra as $key => $value){
+    
+    if( (int) $value['cantidad'] > 0 ) {
+
+        
+        if($key == 'camisas'){
+            $precio = (float) $value['precio'] * .93;
+                
+        } else {
+            $precio = (float) $value['precio'];
+        }
+        
+        ${"articulo$i"} = new Item();
+        ${"articulo$i"} ->setName('Extras: ' . $key)
+                        ->setCurrency('USD')
+                        ->setQuantity((int) $value['cantidad'])
+                        ->setPrice( $precio );
+        $i++;
+
+    }
+}
+
+echo $articulo3->getName();
+
+
 /*
 
 $listaArticulos = new ItemList();
@@ -85,7 +114,7 @@ $detalles->setShipping($envio)
          ->setSubtotal($precio);
 
 $cantidad = new Amount();
-$cantidad->setCurrency('MXN')
+$cantidad->setCurrency('USD')
           ->setTotal($precio)
           ->setDetails($detalles);
 
