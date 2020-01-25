@@ -120,7 +120,7 @@
                     }
                     suma.innerHTML = '$ ' + totalPagar.toFixed(2);
 
-                    //botonRegistro.disabled = false;
+                    botonRegistro.disabled = false;
                     document.getElementById('total_pedido').value = totalPagar;
                 }
                 
