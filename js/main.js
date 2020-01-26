@@ -6,7 +6,8 @@
 
     document.addEventListener('DOMContentLoaded', function(){
 
-        
+        //Revisar esta parte porque hace fallar todo el codigo de calculo de precios
+        /*
         var map = L.map('mapa').setView([2.446043, -76.59845], 17);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -18,6 +19,7 @@
             .openPopup()
             .bindTooltip('Un Tooltip')
             .openTooltip();
+            */
         
 
         //campos Datos usuario
@@ -123,7 +125,7 @@
                     for(var i = 0; i < listadoProductos.length; i++){
                         lista_productos.innerHTML += listadoProductos[i] + '<br/>';
                     }
-                    suma.innerHTML = '$ ' + totalPagar.toFixed(2);
+                    suma.innerHTML = "$ " + totalPagar.toFixed(2);
 
                     botonRegistro.disabled = false;
                     document.getElementById('total_pedido').value = totalPagar;
@@ -235,26 +237,3 @@ $(function() {
     $('.invitado-info').colorbox({inline:true, width:"50%"});
     $('.boton_newsletter').colorbox({inline:true, width:"50%"});
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

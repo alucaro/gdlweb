@@ -117,11 +117,6 @@ $cantidad = new Amount();
 $cantidad->setCurrency('USD')
           ->setTotal($total);
 
-echo $total;
-
-
-          /*
-
 $transaccion = new Transaction();
 $transaccion->setAmount($cantidad)
             ->setItemList($listaArticulos)
@@ -129,6 +124,7 @@ $transaccion->setAmount($cantidad)
             ->setInvoiceNumber(uniqid());//Podria ser el id de la base de datos
 
 
+/*
 $redireccionar = new RedirectUrls();
 $redireccionar->setReturnUrl(URL_SITIO . "/pago_finalizado.php?exito=true" )
               ->setCancelUrl(URL_SITIO . "/pago_finalizado.php?exito=false");

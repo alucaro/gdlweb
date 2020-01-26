@@ -15,6 +15,7 @@
     //Revisar no esta enviando registro[] en el post
     $eventos = $_POST['registro'];
     $registro = eventos_json($eventos);
+
     try {
         require_once('includes/funciones/bd_conexion.php');
         $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado) values(?, ?, ?, ?, ?, ?, ?, ?)");
@@ -27,6 +28,7 @@
         $error = $e->getMessage();
     }
 ?>
+
 <?php endif; ?>
 
 <?php include_once 'includes/templates/header.php'; ?>
@@ -35,8 +37,9 @@
     <h2>Resumen Registro</h2>
 
         <?php if(isset($_GET['exitoso'])): 
-            if($_GET['exitoso'] == "1");
-            echo "Registro exitoso";
+            if($_GET['exitoso'] == "1"):
+                echo "Registro exitoso";
+            endif;
         endif; ?>
 
 
