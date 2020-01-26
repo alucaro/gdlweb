@@ -190,7 +190,7 @@
                     <div id="suma-total">
 
                     </div>
-                    <input type="hidden" name="total_pedido" id="total_pedido" >
+                    <input type="hidden" name="total_pedido" id="total_pedido" value = "total-pedido">
                     <input type="submit" id="btnRegistro" name="submit" class="button" value="Pagar">
                 </div><!--total-->
             </div><!--caja-->

@@ -16,6 +16,11 @@ use PayPal\Api\Payment;
 require 'includes/paypal.php';
 
 if(isset($_POST['submit'])): 
+
+    echo "<pre>";
+    var_dump($_POST); 
+    echo"</pre>";
+
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
@@ -110,15 +115,19 @@ $listaArticulos->setItems($arreglo_pedido);
 
 $cantidad = new Amount();
 $cantidad->setCurrency('USD')
-          ->setTotal($precio)
-          ->setDetails($detalles);
+          ->setTotal($total);
+
+echo $total;
+
 
           /*
+
 $transaccion = new Transaction();
 $transaccion->setAmount($cantidad)
             ->setItemList($listaArticulos)
             ->setDescription('pago')
             ->setInvoiceNumber(uniqid());//Podria ser el id de la base de datos
+
 
 $redireccionar = new RedirectUrls();
 $redireccionar->setReturnUrl(URL_SITIO . "/pago_finalizado.php?exito=true" )

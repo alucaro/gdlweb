@@ -6,6 +6,7 @@
 
     document.addEventListener('DOMContentLoaded', function(){
 
+        
         var map = L.map('mapa').setView([2.446043, -76.59845], 17);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -17,6 +18,7 @@
             .openPopup()
             .bindTooltip('Un Tooltip')
             .openTooltip();
+        
 
         //campos Datos usuario
         var nombre = document.getElementById('nombre');
@@ -34,12 +36,13 @@
         var botonRegistro = document.getElementById('btnRegistro');
         var lista_productos = document.getElementById('lista-productos');
         var suma = document.getElementById('suma-total');
-        
+
         // Extras
         var camisas = document.getElementById('camisa_evento');
         var etiquetas = document.getElementById('etiquetas');
 
-        //botonRegistro.disabled = true;
+        botonRegistro.disabled = true;
+
 
         if(document.getElementById('calcular')) {
             
@@ -81,6 +84,7 @@
 
             function calcularMontos(event){
                 event.preventDefault();
+                console.log("haz hecho click en calcular");
                 if(regalo.value === ''){
                     alert("Debes elegir un regalo");
                     regalo.focus();
@@ -114,6 +118,7 @@
                         listadoProductos.push(regalo.value + ': Regalo seleccionado');
                     }
                     lista_productos.style.display = "block";
+
                     lista_productos.innerHTML = '';
                     for(var i = 0; i < listadoProductos.length; i++){
                         lista_productos.innerHTML += listadoProductos[i] + '<br/>';
@@ -122,6 +127,7 @@
 
                     botonRegistro.disabled = false;
                     document.getElementById('total_pedido').value = totalPagar;
+
                 }
                 
             }
