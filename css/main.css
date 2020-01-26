@@ -793,7 +793,7 @@ p.copyrigth {
 .navegacion-principal .activo {
   border-bottom: 2px solid #fe4918;
 }
-div.galeria {
+div.galeria a{
   display: inline-block;
   margin-bottom: 5px;
 }
@@ -969,6 +969,22 @@ div.cboxElement {
   padding: 30px!important;
   text-align: center;
 }
+
+/*Hay lineas faltantes en el main css al revisar el video cap 434 min 7:50*/
+.resultado {
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.correcto {
+  background-color: rgb(2,173,2);
+}
+.error {
+  background-color: red;
+}
+
 
 /* ==========================================================================
    Helper classes

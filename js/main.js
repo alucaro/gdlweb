@@ -43,7 +43,7 @@
         var camisas = document.getElementById('camisa_evento');
         var etiquetas = document.getElementById('etiquetas');
 
-        botonRegistro.disabled = true;
+        //botonRegistro.disabled = true;
 
 
         if(document.getElementById('calcular')) {
@@ -127,7 +127,7 @@
                     }
                     suma.innerHTML = "$ " + totalPagar.toFixed(2);
 
-                    botonRegistro.disabled = false;
+                    //botonRegistro.disabled = false;
                     document.getElementById('total_pedido').value = totalPagar;
 
                 }
@@ -154,8 +154,10 @@
                     }
 
                     for(var i = 0; diasElegidos.length; i++){
+                        //Revisar el codigo marca error
                         document.getElementById(diasElegidos[i]).style.display = 'block';
                     }
+                    
             }
 
         }//end if calcular
@@ -234,6 +236,8 @@ $(function() {
     });
 
     //Colorbox
+    /*
     $('.invitado-info').colorbox({inline:true, width:"50%"});
     $('.boton_newsletter').colorbox({inline:true, width:"50%"});
+    */
 })

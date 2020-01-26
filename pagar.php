@@ -17,9 +17,11 @@ require 'includes/paypal.php';
 
 if(isset($_POST['submit'])): 
 
+    /*
     echo "<pre>";
     var_dump($_POST); 
     echo"</pre>";
+    */
 
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -43,15 +45,12 @@ if(isset($_POST['submit'])):
     $eventos = $_POST['registro'];
     $registro = eventos_json($eventos);
 
-    /*echo "<pre>";
-    var_dump($pedidoExtra);
-    echo"</pre>";*/
-
     try {
         require_once('includes/funciones/bd_conexion.php');
         $stmt = $conn->prepare("INSERT INTO registrados (nombre_registrado, apellido_registrado, email_registrado, fecha_registro, pases_articulos, talleres_registrados, regalo, total_pagado) values(?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssssis", $nombre, $apellido, $email, $fecha, $pedido, $registro, $regalo, $total);//las s son para string y la i para entero, deben segir el mismo orden
         $stmt->execute();
+        $ID_registro = $stmt->insert_id;
         $stmt->close();
         $conn->close();
         //header('Location: validar_registro.php?exitoso=1');
@@ -108,8 +107,6 @@ foreach($pedidoExtra as $key => $value){
     }
 }
 
-//echo $articulo3->getName();
-
 $listaArticulos = new ItemList();
 $listaArticulos->setItems($arreglo_pedido);
 
@@ -120,14 +117,13 @@ $cantidad->setCurrency('USD')
 $transaccion = new Transaction();
 $transaccion->setAmount($cantidad)
             ->setItemList($listaArticulos)
-            ->setDescription('pago')
-            ->setInvoiceNumber(uniqid());//Podria ser el id de la base de datos
+            ->setDescription('pago GDLWEBCAMP')
+            ->setInvoiceNumber($ID_registro);//Podria ser el id de la base de datos
 
 
-/*
 $redireccionar = new RedirectUrls();
-$redireccionar->setReturnUrl(URL_SITIO . "/pago_finalizado.php?exito=true" )
-              ->setCancelUrl(URL_SITIO . "/pago_finalizado.php?exito=false");
+$redireccionar->setReturnUrl(URL_SITIO . "/pago_finalizado.php?exito=true&id_pago={$ID_registro}" )
+              ->setCancelUrl(URL_SITIO . "/pago_finalizado.php?exito=false&id_pago={$ID_registro}");
 
 $pago = new Payment();
 $pago->setIntent("sale")
@@ -147,5 +143,3 @@ try{
 $aprobado = $pago->getApprovalLink();
 
 header("Location: {$aprobado}");
-
-*/

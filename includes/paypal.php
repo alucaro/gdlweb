@@ -1,8 +1,9 @@
 <?php
 
 require 'paypal/autoload.php';
-
-define('URL_SITIO', '/http://127.0.0.1/phpMysql/gdlWebCamp');
+//en el video decia que reemplazaramos la url po http://127.0.0.1/phpMysql/gdlWebCamp, pero no funciona con esta
+//Redireccionaba a pagina por defecto con http://127.0.0.1/paypal/paypal, la volvi a cambiar por la que sugeria el video y funciono :)
+define('URL_SITIO', 'http://127.0.0.1/phpMysql/gdlWebCamp');
 
 $apiContext = new \PayPal\Rest\ApiContext(
     new \PayPal\Auth\OAuthTokenCredential(
