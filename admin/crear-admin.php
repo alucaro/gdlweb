@@ -43,12 +43,12 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="usuario">Usuario:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="usuario" placeholder="Usuario">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="usuario" placeholder="Usuario">
                         </div>
 
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="nombre" placeholder="Nombre completo">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="nombre" placeholder="Nombre completo">
                         </div>
 
                         <div class="form-group">
@@ -61,6 +61,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
+                        <input type="hidden" name="agregar-admin" value="1">
                         <button type="submit" class="btn btn-primary">Añadir</button>
                     </div>
                     </form>
