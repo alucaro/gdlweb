@@ -1,7 +1,5 @@
 <?php
 
-include_once 'funciones/funciones.php'; 
-
 
 if(isset($_POST['agregar-admin'])) {
     $usuario = $_POST['usuario'];
@@ -14,5 +12,16 @@ if(isset($_POST['agregar-admin'])) {
 
     $password_hashed = password_hash($password_hashed, PASSWORD_BCRYPT, $opciones);
 
-    echo $password_hashed;
+    try {
+        include_once 'funciones/funciones.php'; 
+        $stmt = $conn->prepare("INSERT INTO admins (usuario, nombre, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $usuario, $nombre, $password_hashed);
+        $stmt->execute();
+        $stmt->close();
+        $conn->close();
+
+    } catch (Exception $e) {
+        echo "Error" . $e->getMessage();
+    }
+
 }
